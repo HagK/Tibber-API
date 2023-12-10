@@ -164,7 +164,7 @@ output = output + '\n\n### consumption/costs last ' + str(costshistory) + ' days
 for i in costs:
     if (i['cost'] is not None and i['consumption'] is not None):
         # cost.append({"cost": i['cost'], "consumption": i['consumption'], "day": i['from'][0:10]})
-        output = output + str(i['from'][0:10]) + '   ' + str(i['consumption']) + ' kWh   ' + str(round(float(i['cost']),3)) + '\n'
+        output = output + str(i['from'][0:10]) + '   ' + str(i['consumption']) + ' kWh   ' + str(round(float(i['cost']),3)) + ' EUR   ' + str(round( i['cost']/i['consumption'] ,4)) + ' EUR/kWh\n'
         try:
             redis_db.set('tibber/daily/' + str(i['from'][0:10]), float(i['consumption']))
         except Exception as E:
